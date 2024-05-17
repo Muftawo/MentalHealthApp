@@ -27,3 +27,25 @@ class MhIconContainer extends StatelessWidget {
     );
   }
 }
+
+class EmojiContainer extends StatelessWidget {
+  const EmojiContainer({
+    super.key,
+    this.containerColor,
+    this.emoji,
+  });
+
+  final Color? containerColor;
+  final String? emoji;
+
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+        decoration: BoxDecoration(
+          color: containerColor,
+          borderRadius: BorderRadius.circular(10),
+        ),
+        padding: const EdgeInsets.all(8),
+        child: Text(emoji!));
+  }
+}
