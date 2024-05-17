@@ -33,26 +33,54 @@ class _HomePageState extends State<HomePage> {
           padding: EdgeInsets.all(16.0),
           child: Column(
             children: [
-              Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: [
-                  Text(
-                    "Hi, Mufti!",
-                    style: TextStyle(
-                        color: Colors.white,
-                        fontSize: 24,
-                        fontWeight: FontWeight.bold),
-                  ),
-                  Icon(
-                    Icons.notifications,
-                    color: Colors.white,
-                  )
-                ],
-              )
+              // greetings row
+              GreetingsRow()
             ],
           ),
         ),
       ),
+    );
+  }
+}
+
+class GreetingsRow extends StatelessWidget {
+  const GreetingsRow({
+    super.key,
+  });
+
+  @override
+  Widget build(BuildContext context) {
+    return Row(
+      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+      children: [
+        Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            const Text(
+              "Hi, Mufti!",
+              style: TextStyle(
+                  color: Colors.white,
+                  fontSize: 24,
+                  fontWeight: FontWeight.bold),
+            ),
+            Text(
+              "7th Sep 2024",
+              style: TextStyle(color: Colors.blue[100], fontSize: 10),
+            )
+          ],
+        ),
+        Container(
+          decoration: BoxDecoration(
+            color: Colors.blue[700],
+            borderRadius: BorderRadius.circular(10),
+          ),
+          padding: const EdgeInsets.all(4),
+          child: const Icon(
+            Icons.notifications,
+            color: Colors.white,
+          ),
+        )
+      ],
     );
   }
 }
