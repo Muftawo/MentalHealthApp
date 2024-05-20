@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+// ignore: depend_on_referenced_packages
+import 'package:intl/intl.dart';
 import 'package:mentalhealthapp/utils/common/mh_icon_container.dart';
 import 'package:mentalhealthapp/utils/constants/colors.dart';
 import 'package:mentalhealthapp/utils/constants/sizes.dart';
@@ -11,21 +13,54 @@ class HomePage extends StatefulWidget {
 }
 
 class _HomePageState extends State<HomePage> {
+  int _currentIndex = 0;
+  final TextEditingController searchController = TextEditingController();
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: MhColors.primary,
-      body: const SafeArea(
+      // floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
+      // floatingActionButton: FloatingActionButton(
+      //   onPressed: () {},
+      //   elevation: 0,
+      //   backgroundColor: MhColors.secondary,
+      //   child: const Icon(Icons.add),
+      // ),
+      bottomNavigationBar: BottomNavigationBar(
+        backgroundColor: Colors.grey[300],
+        // iconSize: 20.0,
+        // selectedFontSize: 20.0,
+        onTap: (index) {
+          setState(
+            () {
+              _currentIndex = index;
+            },
+          );
+        },
+        currentIndex: _currentIndex,
+        type: BottomNavigationBarType.fixed,
+        items: const [
+          BottomNavigationBarItem(icon: Icon(Icons.home_filled), label: ""),
+          BottomNavigationBarItem(
+              icon: Icon(Icons.grid_view_rounded), label: ""),
+          BottomNavigationBarItem(icon: Icon(Icons.email_rounded), label: ""),
+          BottomNavigationBarItem(icon: Icon(Icons.person), label: ""),
+        ],
+      ),
+      body: SafeArea(
         child: Padding(
-          padding: EdgeInsets.all(24.0),
+          padding: const EdgeInsets.all(24.0),
           child: Column(
             children: [
-              GreetingsRow(),
-              SizedBox(height: MhSizes.spaceBtwItems),
-              SearchBar(),
-              SizedBox(height: MhSizes.spaceBtwItems),
-              Feelings(),
-              SizedBox(height: MhSizes.spaceBtwItems),
+              const GreetingsRow(),
+              const SizedBox(height: MhSizes.spaceBtwItems),
+              SearchBar(
+                searchController: searchController,
+              ),
+              const SizedBox(height: MhSizes.spaceBtwItems),
+              const Feelings(),
+              const SizedBox(height: MhSizes.spaceBtwItems),
             ],
           ),
         ),
@@ -67,21 +102,25 @@ class Feelings extends StatelessWidget {
           Row(
             mainAxisAlignment: MainAxisAlignment.spaceAround,
             children: [
-              EmojiContainer(
+              FeelingEmojiTile(
                 containerColor: MhColors.secondary,
                 emoji: '😔',
+                feelingText: "Bad",
               ),
-              EmojiContainer(
+              FeelingEmojiTile(
                 containerColor: MhColors.secondary,
                 emoji: '😊',
+                feelingText: "Fine",
               ),
-              EmojiContainer(
-                containerColor: MhColors.secondary,
-                emoji: '😁',
-              ),
-              EmojiContainer(
+              FeelingEmojiTile(
                 containerColor: MhColors.secondary,
                 emoji: '😃',
+                feelingText: "Well",
+              ),
+              FeelingEmojiTile(
+                containerColor: MhColors.secondary,
+                emoji: '🥳',
+                feelingText: "Execelent",
               ),
             ],
           )
@@ -94,28 +133,29 @@ class Feelings extends StatelessWidget {
 class SearchBar extends StatelessWidget {
   const SearchBar({
     super.key,
+    required this.searchController,
   });
 
+  final TextEditingController searchController;
   @override
   Widget build(BuildContext context) {
     return Container(
       decoration: BoxDecoration(
           color: MhColors.secondary, borderRadius: BorderRadius.circular(16)),
-      padding: const EdgeInsets.all(8),
-      child: const Row(
-        children: [
-          Icon(
+      child: TextFormField(
+        textAlign: TextAlign.justify,
+        controller: searchController,
+        decoration: const InputDecoration(
+          hintText: "Search",
+          hintStyle: TextStyle(color: MhColors.textPrimary),
+          border: InputBorder.none,
+          prefixIcon: Icon(
             Icons.search,
             color: MhColors.textPrimary,
           ),
-          SizedBox(
-            width: 5,
-          ),
-          Text(
-            "search",
-            style: TextStyle(color: MhColors.textPrimary),
-          )
-        ],
+        ),
+        style: const TextStyle(color: MhColors.textPrimary),
+        onChanged: (value) {},
       ),
     );
   }
@@ -128,6 +168,9 @@ class GreetingsRow extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    DateTime now = DateTime.now().toLocal();
+    String formattedDate = DateFormat('dd MMM yyyy').format(now);
+
     return Row(
       mainAxisAlignment: MainAxisAlignment.spaceBetween,
       children: [
@@ -142,7 +185,7 @@ class GreetingsRow extends StatelessWidget {
                   fontWeight: FontWeight.bold),
             ),
             Text(
-              DateTime.now().toLocal().toString(),
+              formattedDate,
               style: TextStyle(color: MhColors.textSecondary, fontSize: 10),
             )
           ],
