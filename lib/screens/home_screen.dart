@@ -94,28 +94,29 @@ class Feelings extends StatelessWidget {
 class SearchBar extends StatelessWidget {
   const SearchBar({
     super.key,
+    required this.searchController,
   });
 
+  final TextEditingController searchController;
   @override
   Widget build(BuildContext context) {
     return Container(
       decoration: BoxDecoration(
           color: MhColors.secondary, borderRadius: BorderRadius.circular(16)),
-      padding: const EdgeInsets.all(8),
-      child: const Row(
-        children: [
-          Icon(
+      child: TextFormField(
+        textAlign: TextAlign.justify,
+        controller: searchController,
+        decoration: const InputDecoration(
+          hintText: "Search",
+          hintStyle: TextStyle(color: MhColors.textPrimary),
+          border: InputBorder.none,
+          prefixIcon: Icon(
             Icons.search,
             color: MhColors.textPrimary,
           ),
-          SizedBox(
-            width: 5,
-          ),
-          Text(
-            "search",
-            style: TextStyle(color: MhColors.textPrimary),
-          )
-        ],
+        ),
+        style: const TextStyle(color: MhColors.textPrimary),
+        onChanged: (value) {},
       ),
     );
   }
