@@ -50,15 +50,17 @@ class _HomePageState extends State<HomePage> {
       ),
       body: SafeArea(
         child: Padding(
-          padding: EdgeInsets.all(24.0),
+          padding: const EdgeInsets.all(24.0),
           child: Column(
             children: [
-              GreetingsRow(),
-              SizedBox(height: MhSizes.spaceBtwItems),
-              SearchBar(),
-              SizedBox(height: MhSizes.spaceBtwItems),
-              Feelings(),
-              SizedBox(height: MhSizes.spaceBtwItems),
+              const GreetingsRow(),
+              const SizedBox(height: MhSizes.spaceBtwItems),
+              SearchBar(
+                searchController: searchController,
+              ),
+              const SizedBox(height: MhSizes.spaceBtwItems),
+              const Feelings(),
+              const SizedBox(height: MhSizes.spaceBtwItems),
             ],
           ),
         ),
