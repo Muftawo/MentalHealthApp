@@ -3,8 +3,8 @@ import 'package:flutter/material.dart';
 class MhColors {
   MhColors._();
   // App Basic Colors
-  static var primary = Colors.blue[800];
-  static var secondary = Colors.blue[500];
+  static var primary = const Color(0xFF267EBD);
+  static var secondary = const Color(0xFF3F8DC5);
 
   // Text
   static const textPrimary = Colors.white;
