@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+// ignore: depend_on_referenced_packages
+import 'package:intl/intl.dart';
 import 'package:mentalhealthapp/utils/common/mh_icon_container.dart';
 import 'package:mentalhealthapp/utils/constants/colors.dart';
 import 'package:mentalhealthapp/utils/constants/sizes.dart';
