@@ -13,11 +13,42 @@ class HomePage extends StatefulWidget {
 }
 
 class _HomePageState extends State<HomePage> {
+  int _currentIndex = 0;
+  final TextEditingController searchController = TextEditingController();
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: MhColors.primary,
-      body: const SafeArea(
+      // floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
+      // floatingActionButton: FloatingActionButton(
+      //   onPressed: () {},
+      //   elevation: 0,
+      //   backgroundColor: MhColors.secondary,
+      //   child: const Icon(Icons.add),
+      // ),
+      bottomNavigationBar: BottomNavigationBar(
+        backgroundColor: Colors.grey[300],
+        // iconSize: 20.0,
+        // selectedFontSize: 20.0,
+        onTap: (index) {
+          setState(
+            () {
+              _currentIndex = index;
+            },
+          );
+        },
+        currentIndex: _currentIndex,
+        type: BottomNavigationBarType.fixed,
+        items: const [
+          BottomNavigationBarItem(icon: Icon(Icons.home_filled), label: ""),
+          BottomNavigationBarItem(
+              icon: Icon(Icons.grid_view_rounded), label: ""),
+          BottomNavigationBarItem(icon: Icon(Icons.email_rounded), label: ""),
+          BottomNavigationBarItem(icon: Icon(Icons.person), label: ""),
+        ],
+      ),
+      body: SafeArea(
         child: Padding(
           padding: EdgeInsets.all(24.0),
           child: Column(
