@@ -142,7 +142,7 @@ class GreetingsRow extends StatelessWidget {
                   fontWeight: FontWeight.bold),
             ),
             Text(
-              DateTime.now().toLocal().toString(),
+              formattedDate,
               style: TextStyle(color: MhColors.textSecondary, fontSize: 10),
             )
           ],
