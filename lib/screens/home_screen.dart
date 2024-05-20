@@ -128,6 +128,9 @@ class GreetingsRow extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    DateTime now = DateTime.now().toLocal();
+    String formattedDate = DateFormat('dd MMM yyyy').format(now);
+
     return Row(
       mainAxisAlignment: MainAxisAlignment.spaceBetween,
       children: [
