@@ -67,21 +67,25 @@ class Feelings extends StatelessWidget {
           Row(
             mainAxisAlignment: MainAxisAlignment.spaceAround,
             children: [
-              EmojiContainer(
+              FeelingEmojiTile(
                 containerColor: MhColors.secondary,
                 emoji: '😔',
+                feelingText: "Bad",
               ),
-              EmojiContainer(
+              FeelingEmojiTile(
                 containerColor: MhColors.secondary,
                 emoji: '😊',
+                feelingText: "Fine",
               ),
-              EmojiContainer(
-                containerColor: MhColors.secondary,
-                emoji: '😁',
-              ),
-              EmojiContainer(
+              FeelingEmojiTile(
                 containerColor: MhColors.secondary,
                 emoji: '😃',
+                feelingText: "Well",
+              ),
+              FeelingEmojiTile(
+                containerColor: MhColors.secondary,
+                emoji: '🥳',
+                feelingText: "Execelent",
               ),
             ],
           )
